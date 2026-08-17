@@ -1,73 +1,70 @@
-# Welcome to your Lovable project
+# Muhammad Maaz Korejo — Portfolio Website
 
-## Project info
+> **AI Developer & Backend Engineer**  
+> LLM-Integrated Platforms · Intelligent Document Processing (IDP) · Offline LLM Evaluation · Agentic Workflows
 
-**URL**: https://lovable.dev/projects/1169db3a-30f3-49bc-bd0b-9cda42ae0ebe
+🌐 **Live Website:** [https://my-portfolio-iota-six-98.vercel.app](https://my-portfolio-iota-six-98.vercel.app)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 📌 Overview
 
-**Use Lovable**
+This is the personal portfolio website of **Muhammad Maaz Korejo**, showcasing:
+- **32 Verified Original Credentials & Certifications** (12 Anthropic credentials, Google AI Essentials 5-course specialization, The Linux Foundation LFC102, IBM SkillsBuild, Forage, UniAthena, and more) with full-resolution dialog previews and a complete `.zip` download bundle.
+- **Work Experience & Engineering Fellowships**:
+  - **AI Developer Intern** — *Nebulark (IDP SaaS)*: 14-tool benchmark evaluation, 3-tier hybrid routing pipeline, Ray parallel processing & DocLayout-YOLO fine-tuning, and multi-tenant RLS isolation.
+  - **Research / Implementation Engineer** — *INFERENCE Lab Fellowship*: `llm-eval-kit` pip library, offline deterministic LLM evaluation, thread-safe singleton embeddings, and numeric-mismatch verification.
+  - **Cloud Computing Intern** — *PITP–MUET*: Capstone Flask + PostgreSQL + Railway platform with automated CI/CD and VM automation.
+  - **Certified Graphic Designer Intern** — *PITP–MUET*.
+- **Master Tech Stack Directory** across 5 system layers (AI & LLM Engineering, Document Intelligence & OCR, Machine Learning, Backend & Cloud Infrastructure, Frontend & Testing).
+- **Core Open-Source & Production Repositories**:
+  1. [Maazkorejo/Alfred-Personal-Assistant](https://github.com/Maazkorejo/Alfred-Personal-Assistant)
+  2. [Maazkorejo/self-rag-engine](https://github.com/Maazkorejo/self-rag-engine)
+  3. [Maazkorejo/CTX-Bridge](https://github.com/Maazkorejo/CTX-Bridge)
+  4. [Inference-LAB/llm-eval-kit](https://github.com/Inference-LAB/llm-eval-kit)
+  5. [Maazkorejo/football-pundit](https://github.com/Maazkorejo/football-pundit)
+  6. [Maazkorejo/NIDS-Machine-Learning](https://github.com/Maazkorejo/NIDS-Machine-Learning)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1169db3a-30f3-49bc-bd0b-9cda42ae0ebe) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Built With
 
-**Use your preferred IDE**
+- **Framework:** [React 18](https://react.dev/) + [Vite](https://vitejs.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Deployment:** [Vercel](https://vercel.com/)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started Locally
 
-Follow these steps:
+### Prerequisites
+- Node.js (v18+) & npm / bun
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Maazkorejo/my-portfolio.git
+cd my-portfolio
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Production Build
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 📬 Contact & Socials
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/1169db3a-30f3-49bc-bd0b-9cda42ae0ebe) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- 🌐 **Live Website:** [my-portfolio-iota-six-98.vercel.app](https://my-portfolio-iota-six-98.vercel.app)
+- 💼 **LinkedIn:** [linkedin.com/in/muhammad-maaz-korejo](https://linkedin.com/in/muhammad-maaz-korejo)
+- 🐙 **GitHub:** [github.com/Maazkorejo](https://github.com/Maazkorejo)
+- 📧 **Email:** [maazkorejo00@gmail.com](mailto:maazkorejo00@gmail.com)
