@@ -7,6 +7,7 @@ import {
   Server,
   LayoutTemplate,
   Workflow,
+  FileText,
   LucideIcon,
 } from "lucide-react";
 import { staggerContainer, fadeUpItem, viewportOnce } from "@/lib/motion";
@@ -17,6 +18,7 @@ const iconMap: Record<string, LucideIcon> = {
   Server,
   LayoutTemplate,
   Workflow,
+  FileText,
 };
 
 export function Skills() {

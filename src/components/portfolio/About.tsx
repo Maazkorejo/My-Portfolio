@@ -9,13 +9,14 @@ export function About() {
         <div className="md:col-span-2 space-y-4 text-muted-foreground leading-relaxed">
           <p>
             I'm a 3rd-year BS Information Technology student at the University of Sindh, Jamshoro,
-            focused on shipping systems — not slideware. My work spans agentic AI assistants,
-            production ML pipelines, and full-stack platforms deployed to real users.
+            focused on shipping robust systems — not toy demos. My work spans Intelligent Document
+            Processing (IDP) at Nebulark, offline LLM evaluation architectures at INFERENCE Lab,
+            and open-source developer tooling (CTX-Bridge on PyPI).
           </p>
           <p>
-            I care about the parts most tutorials skip: state design for LLM agents, retrieval
-            that survives contact with users, backends that don't fall over, and pipelines you can
-            actually reproduce.
+            I care about the parts most tutorials skip: state design for LLM agents, cost-optimized
+            hybrid OCR pipelines, retrieval that survives contact with users, backends with strict tenant
+            isolation, and pipelines with reproducible testing.
           </p>
         </div>
 

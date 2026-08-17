@@ -142,13 +142,16 @@ export function Hero() {
               <MapPin className="h-3.5 w-3.5" /> {personal.location}
             </span>
             <span>
-              <Counter to={8} /> Anthropic-verified credentials
+              <Counter to={12} /> Anthropic credentials
             </span>
             <span>
-              <Counter to={3} /> deployed projects
+              <Counter to={6} /> flagship projects
             </span>
             <span>
-              <Counter to={2} /> govt-backed internships
+              <Counter to={4} /> engineering roles
+            </span>
+            <span>
+              <Counter to={32} />+ accredited certs
             </span>
           </motion.div>
         </motion.div>

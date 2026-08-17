@@ -18,14 +18,14 @@ export function Certifications() {
       id="certifications"
       eyebrow="05 / Credentials"
       title="Certifications & achievements."
-      description="8 Anthropic-verified credentials plus programs from IBM, McKinsey, HEC/NAVTTC, HP LIFE, Forage, Simplilearn, UniAthena and PITP–MUET."
+      description="12 Anthropic-verified credentials plus programs from Google, Linux Foundation, INFERENCE Lab, IBM, McKinsey, HEC/NAVTTC, HP LIFE, Forage, Simplilearn, UniAthena and PITP–MUET."
     >
       <motion.div
         variants={staggerContainer(0.1)}
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
-        className="grid md:grid-cols-3 gap-4 mb-12"
+        className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
       >
         {certifications.map((c) => (
           <motion.div
