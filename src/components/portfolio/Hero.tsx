@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -98,14 +99,14 @@ export function Hero() {
           >
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
               <Button asChild size="lg">
-                <a href="#projects">
+                <Link to="/projects">
                   View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </Link>
               </Button>
             </motion.div>
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
               <Button asChild size="lg" variant="outline">
-                <a href="#contact">Get In Touch</a>
+                <Link to="/contact">Get In Touch</Link>
               </Button>
             </motion.div>
 
