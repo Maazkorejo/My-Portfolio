@@ -1,17 +1,16 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { personal } from "@/data/portfolio";
-import { Counter } from "./Counter";
 import { easeOut, lineReveal } from "@/lib/motion";
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(500px circle at ${mx}px ${my}px, hsl(var(--accent) / 0.12), transparent 65%)`;
+  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${mx}px ${my}px, hsl(var(--accent) / 0.1), transparent 65%)`;
 
   const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
     const rect = sectionRef.current?.getBoundingClientRect();
@@ -24,17 +23,12 @@ export function Hero() {
     <section
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative overflow-hidden pt-20 md:pt-28 pb-20"
+      className="relative overflow-hidden border-b border-border pt-16 md:pt-24 pb-16 md:pb-20"
     >
-      <div className="absolute inset-0 bg-grid mask-fade opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid mask-radial-top opacity-70 pointer-events-none" />
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{ background: spotlight }}
-      />
-      <motion.div
-        className="absolute top-1/3 -left-40 h-96 w-96 rounded-full bg-accent/20 blur-3xl pointer-events-none"
-        animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="container-wide relative">
@@ -42,22 +36,26 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="max-w-3xl"
+          className="max-w-4xl"
         >
+          {/* Status Capsule Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: easeOut }}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-mono text-xs text-muted-foreground mb-6"
+            transition={{ duration: 0.45, ease: easeOut }}
+            className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/70 backdrop-blur-sm px-3.5 py-1 mb-6"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            Available for opportunities
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              AI Developer &amp; Systems Engineer · {personal.location}
+            </span>
           </motion.div>
 
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+          {/* Main Headline */}
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.04] text-balance">
             <span className="block overflow-hidden">
               <motion.span
                 className="block"
@@ -75,42 +73,56 @@ export function Hero() {
                 variants={lineReveal}
                 initial="hidden"
                 animate="show"
-                transition={{ delay: 0.22 }}
+                transition={{ delay: 0.2 }}
               >
-                Backend Engineer
+                Backend Engineer.
               </motion.span>
+            </span>
+            <span className="block text-2xl sm:text-4xl lg:text-5xl text-muted-foreground font-semibold mt-2">
+              Built for real production, not toy demos.
             </span>
           </h1>
 
+          {/* Bio Description */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: easeOut }}
-            className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
+            transition={{ duration: 0.5, delay: 0.35, ease: easeOut }}
+            className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl text-pretty"
           >
-            {personal.bio}
+            Specializing in LLM-integrated platforms, Intelligent Document Processing (IDP) SaaS,
+            reproducible offline evaluation architectures, and agentic workflows.
+            Research Fellow at INFERENCE Lab (<span className="text-foreground font-mono text-xs">llm-eval-kit</span>) and AI Developer Intern at Nebulark.
           </motion.p>
 
+          {/* Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: easeOut }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            transition={{ duration: 0.5, delay: 0.45, ease: easeOut }}
+            className="mt-8 flex flex-wrap items-center gap-3.5"
           >
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="group font-mono text-xs uppercase tracking-wider font-semibold">
                 <Link to="/projects">
-                  View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                  Explore Projects <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </motion.div>
+
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/contact">Get In Touch</Link>
+              <Button asChild size="lg" variant="outline" className="font-mono text-xs uppercase tracking-wider font-semibold">
+                <Link to="/skills">View Tech Stack</Link>
               </Button>
             </motion.div>
 
-            <div className="ml-2 flex items-center gap-1">
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
+              <Button asChild size="lg" variant="ghost" className="font-mono text-xs uppercase tracking-wider font-semibold">
+                <Link to="/contact">Contact</Link>
+              </Button>
+            </motion.div>
+
+            <div className="ml-auto hidden sm:flex items-center gap-1.5 border-l border-border pl-4">
               {[
                 { href: personal.github, label: "GitHub", Icon: Github },
                 { href: personal.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -124,37 +136,46 @@ export function Hero() {
                   aria-label={label}
                   whileHover={{ y: -2, scale: 1.05 }}
                   whileTap={{ scale: 0.92 }}
-                  transition={{ duration: 0.15 }}
-                  className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                  className="p-2.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4" />
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground"
+          {/* INFERENCE Lab Style Signature 4-Column Stat Banner */}
+          <motion.dl
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-xl border border-border bg-border"
           >
-            <span className="flex items-center gap-2">
-              <MapPin className="h-3.5 w-3.5" /> {personal.location}
-            </span>
-            <span>
-              <Counter to={12} /> Anthropic credentials
-            </span>
-            <span>
-              <Counter to={6} /> flagship projects
-            </span>
-            <span>
-              <Counter to={4} /> engineering roles
-            </span>
-            <span>
-              <Counter to={32} />+ accredited certs
-            </span>
-          </motion.div>
+            <div className="bg-background p-5 hover:bg-card/50 transition-colors">
+              <dt className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">12</dt>
+              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                ANTHROPIC CREDENTIALS
+              </dd>
+            </div>
+            <div className="bg-background p-5 hover:bg-card/50 transition-colors">
+              <dt className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">32+</dt>
+              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                VERIFIED CERTIFICATES
+              </dd>
+            </div>
+            <div className="bg-background p-5 hover:bg-card/50 transition-colors">
+              <dt className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">6</dt>
+              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                SHIPPED REPOSITORIES
+              </dd>
+            </div>
+            <div className="bg-background p-5 hover:bg-card/50 transition-colors">
+              <dt className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">100%</dt>
+              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                PYTEST TEST COVERAGE
+              </dd>
+            </div>
+          </motion.dl>
         </motion.div>
       </div>
     </section>

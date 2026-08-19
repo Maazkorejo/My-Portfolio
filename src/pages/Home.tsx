@@ -8,92 +8,156 @@ import {
   FolderGit2,
   Briefcase,
   Award,
-  BookOpen,
   Mail,
   ArrowRight,
   ShieldCheck,
   Cpu,
   Layers,
+  CheckCircle2,
+  Terminal,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, fadeUpItem, viewportOnce } from "@/lib/motion";
 
-const sectionGateways = [
+const coreInitiatives = [
   {
-    title: "About Muhammad",
-    subtitle: "01 / Background & Education",
-    desc: "3rd-year IT student at University of Sindh focusing on shipping robust AI systems, IDP platforms, and agentic workflows.",
-    href: "/about",
-    icon: User,
-    badge: "BS IT '27",
-    color: "from-blue-500/10 to-transparent",
-  },
-  {
-    title: "Master Tech Stack",
-    subtitle: "02 / System Capabilities",
-    desc: "5 categorized layers spanning AI/LLM engineering, IDP & OCR pipelines, machine learning, cloud backends, and testing.",
-    href: "/skills",
-    icon: Sparkles,
-    badge: "5 Layers",
-    color: "from-amber-500/10 to-transparent",
-  },
-  {
-    title: "Projects & Repositories",
-    subtitle: "03 / Shipped Software",
-    desc: "Explore CTX-Bridge on PyPI, llm-eval-kit, Self-Reflective RAG, Alfred agent, and FIFA World Cup predictor.",
+    category: "Developer Tooling & Systems",
+    statusTag: "Open-Source & PyPI",
+    title: "Flagship Software & Projects",
+    desc: "Production-grade developer tools, Self-RAG architectures, and agentic AI systems published on PyPI and GitHub.",
     href: "/projects",
     icon: FolderGit2,
-    badge: "6 Flagship",
-    color: "from-emerald-500/10 to-transparent",
+    highlights: [
+      "CTX-Bridge context handoff CLI (PyPI)",
+      "llm-eval-kit offline evaluation library",
+      "Self-RAG engine on Groq LLaMA 3.3 70B",
+      "Alfred agentic assistant with 14 tools",
+    ],
   },
   {
-    title: "Work Experience",
-    subtitle: "04 / Roles & Fellowships",
-    desc: "AI Developer Intern at Nebulark (IDP SaaS), Research Fellow at INFERENCE Lab (Cohort 01), and PITP–MUET internships.",
+    category: "Full-Stack AI Stack",
+    statusTag: "5 System Layers",
+    title: "Master Tech Stack",
+    desc: "Comprehensive capability directory covering LLM engineering, OCR/IDP pipelines, classical ML, cloud backends, and test suites.",
+    href: "/skills",
+    icon: Sparkles,
+    highlights: [
+      "Model Context Protocol & Claude Code",
+      "MinerU, Docling & Mistral-OCR-4",
+      "PostgreSQL RLS tenant isolation",
+      "100% pytest test coverage discipline",
+    ],
+  },
+  {
+    category: "Industry & Research",
+    statusTag: "Active Roles",
+    title: "Work Experience & Fellowships",
+    desc: "AI Developer Internship at Nebulark (IDP SaaS) and competitive Research Implementation Fellowship at INFERENCE Lab (Cohort 01).",
     href: "/experience",
     icon: Briefcase,
-    badge: "Active Intern",
-    color: "from-purple-500/10 to-transparent",
+    highlights: [
+      "14-tool document parsing benchmark",
+      "3-tier hybrid routing (80-90% cost cut)",
+      "Ray parallel actor processing & YOLO",
+      "Deterministic offline evaluation modules",
+    ],
   },
   {
+    category: "Accredited Authority",
+    statusTag: "32 Scanned Originals",
     title: "Verified Certifications",
-    subtitle: "05 / Accredited Credentials",
-    desc: "12 Anthropic credentials, Google AI Essentials 5-course specialization, Linux Foundation, IBM, and UniAthena Python (×7).",
+    desc: "12 Anthropic credentials, Google AI Essentials 5-course specialization, Linux Foundation, IBM, and UniAthena Python certifications.",
     href: "/certifications",
     icon: Award,
-    badge: "32 Verified",
-    color: "from-cyan-500/10 to-transparent",
-  },
-  {
-    title: "Get in Touch",
-    subtitle: "06 / Contact & Collab",
-    desc: "Open for AI developer positions, backend engineering internships, technical collaborations, and inquiries.",
-    href: "/contact",
-    icon: Mail,
-    badge: "Available",
-    color: "from-rose-500/10 to-transparent",
+    highlights: [
+      "Anthropic Model Context Protocol (MCP)",
+      "Google AI Essentials Specialization",
+      "Linux Foundation Open Source (LFC102)",
+      "Full modal preview & .zip download",
+    ],
   },
 ];
 
 export default function Home() {
   return (
-    <div className="space-y-16 pb-20">
-      {/* Hero Header */}
+    <div className="space-y-20 pb-20">
+      {/* Hero Section */}
       <Hero />
 
-      {/* Explore Section Gateways */}
+      {/* Core Engineering Principles (INFERENCE Lab Style) */}
+      <section className="border-b border-border bg-card/20 py-16 md:py-24">
+        <div className="container-wide">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent mb-3.5">
+                <span className="h-px w-6 bg-accent" />
+                <span>Engineering Philosophy</span>
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-balance leading-tight">
+                Engineering discipline over hype. Output over slide decks.
+              </h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed text-pretty text-sm sm:text-base">
+                Operating across the entire modern AI stack — from structured prompting and reflection token architectures
+                to cost-optimized OCR routing, database tenant security, and reproducible PyPI tooling.
+              </p>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="text-xl sm:text-2xl font-medium leading-snug text-balance">
+                Bridging the gap between conceptual AI and{" "}
+                <span className="text-accent font-semibold">reproducible, production-ready systems</span>.
+              </p>
+
+              <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+                <div className="grid gap-1.5 bg-background p-5 sm:grid-cols-[1fr_1.4fr] sm:gap-6 hover:bg-card/50 transition-colors">
+                  <h3 className="font-mono text-sm font-semibold tracking-tight text-foreground flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    Disciplined Verification
+                  </h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                    Verifying real system state and empirical data over assumptions before proposing changes.
+                  </p>
+                </div>
+
+                <div className="grid gap-1.5 bg-background p-5 sm:grid-cols-[1fr_1.4fr] sm:gap-6 hover:bg-card/50 transition-colors">
+                  <h3 className="font-mono text-sm font-semibold tracking-tight text-foreground flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    Factual Grounding
+                  </h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                    Deterministic offline evaluations with numeric-mismatch verification layers to catch hallucinations.
+                  </p>
+                </div>
+
+                <div className="grid gap-1.5 bg-background p-5 sm:grid-cols-[1fr_1.4fr] sm:gap-6 hover:bg-card/50 transition-colors">
+                  <h3 className="font-mono text-sm font-semibold tracking-tight text-foreground flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    Production Artifacts
+                  </h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                    Shipped packages on PyPI, containerized microservices, and 100% test-covered pipelines.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Initiatives Cards (INFERENCE Lab Signature 2x2 Grid) */}
       <section className="container-wide">
-        <div className="mb-8 flex items-end justify-between gap-4 flex-wrap">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-accent mb-2">
-              Navigation Hub
-            </p>
-            <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight">
-              Explore Portfolio Sections.
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent mb-3">
+              <span className="h-px w-6 bg-accent" />
+              <span>Core Tracks</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+              Explore Portfolio Sections
             </h2>
           </div>
-          <p className="font-mono text-xs text-muted-foreground">
-            Click any section to dive into details &rarr;
+          <p className="max-w-md text-sm sm:text-base text-muted-foreground leading-relaxed">
+            Detailed walkthroughs of software releases, master tech capabilities, industry fellowships, and verified credentials.
           </p>
         </div>
 
@@ -102,44 +166,64 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid gap-7 sm:grid-cols-2"
         >
-          {sectionGateways.map((item) => {
+          {coreInitiatives.map((item) => {
             const Icon = item.icon;
             return (
               <motion.div key={item.href} variants={fadeUpItem}>
                 <Link
                   to={item.href}
-                  className="group relative flex flex-col justify-between h-full rounded-xl border border-border bg-card p-6 md:p-7 hover:border-accent/70 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-7 sm:p-9 transition-all duration-200 hover:-translate-y-1 hover:border-foreground/30 hover:shadow-xl h-full"
                 >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
-                  />
-
-                  <div className="relative">
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <div className="rounded-lg bg-accent/10 p-2.5 text-accent group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="h-5 w-5" />
+                  <div>
+                    {/* Header */}
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+                          {item.category}
+                        </span>
                       </div>
-                      <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full border border-border bg-secondary text-muted-foreground">
-                        {item.badge}
+                      <span className="rounded-full border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                        {item.statusTag}
                       </span>
                     </div>
 
-                    <p className="font-mono text-[11px] uppercase tracking-wider text-accent mb-1">
-                      {item.subtitle}
-                    </p>
-                    <h3 className="font-display text-xl font-bold group-hover:text-accent transition-colors">
+                    {/* Title & Description */}
+                    <h3 className="mt-6 text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-accent font-display">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-2.5 leading-relaxed">
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {item.desc}
                     </p>
+
+                    {/* Checklist */}
+                    <div className="mt-6 border-t border-border pt-6">
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
+                        Key Deliverables &amp; Focus:
+                      </p>
+                      <ul className="grid gap-2 sm:grid-cols-2">
+                        {item.highlights.map((point) => (
+                          <li key={point} className="flex items-center gap-2 font-mono text-xs text-foreground/90">
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                            <span className="truncate">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <div className="relative pt-6 mt-4 border-t border-border/70 flex items-center justify-between text-xs font-mono text-accent">
-                    <span>Enter section</span>
-                    <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1.5 transition-transform" />
+                  {/* Bottom Action Bar */}
+                  <div className="mt-8 flex items-center justify-between border-t border-border pt-5">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-accent">
+                      Enter Section
+                    </span>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background transition-transform group-hover:translate-x-1 group-hover:border-accent">
+                      <ArrowRight className="h-4 w-4 text-foreground transition-colors group-hover:text-accent" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>
@@ -148,67 +232,67 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Featured Snapshot */}
+      {/* Featured Research & Systems Engineering Banner */}
       <section className="container-wide">
-        <div className="rounded-2xl border border-border bg-card p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="rounded-2xl border border-border bg-card p-8 sm:p-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid mask-radial-center opacity-50 pointer-events-none" />
 
-          <div className="grid lg:grid-cols-12 gap-8 items-center relative">
+          <div className="relative grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono bg-accent/10 text-accent border border-accent/20">
-                <ShieldCheck className="h-3.5 w-3.5" /> High-Impact Engineering Focus
+              <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+                <ShieldCheck className="h-3.5 w-3.5" /> High-Throughput Engineering
               </span>
-              <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight">
-                From offline LLM evaluation to cost-optimized IDP pipelines.
+              <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-balance">
+                From offline LLM evaluation to cost-optimized hybrid IDP routing.
               </h2>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                Operating across the entire stack: evaluating 14 document parsers at Nebulark, building
-                deterministic offline evaluation modules at INFERENCE Lab, and shipping developer tooling to PyPI.
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed text-pretty">
+                Engineering real systems under resource constraints: benchmarked 14 OCR parsers, built a 3.3x speedup Ray actor pipeline,
+                designed deterministic evaluation modules at INFERENCE Lab, and shipped developer tools to PyPI.
               </p>
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button asChild>
+                <Button asChild className="font-mono text-xs uppercase tracking-wider font-semibold">
                   <Link to="/projects">
-                    <FolderGit2 className="mr-2 h-4 w-4" /> View All Projects
+                    <FolderGit2 className="mr-2 h-4 w-4" /> View Projects
                   </Link>
                 </Button>
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="font-mono text-xs uppercase tracking-wider font-semibold">
                   <Link to="/experience">
-                    <Briefcase className="mr-2 h-4 w-4" /> View Experience Timeline
+                    <Briefcase className="mr-2 h-4 w-4" /> Experience Timeline
                   </Link>
                 </Button>
               </div>
             </div>
 
             <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 font-mono text-xs">
-              <div className="rounded-lg border border-border bg-background p-4 space-y-1">
+              <div className="rounded-xl border border-border bg-background p-4 space-y-1.5 hover:border-foreground/30 transition-colors">
                 <p className="text-accent font-semibold flex items-center gap-1.5">
                   <Cpu className="h-3.5 w-3.5" /> Nebulark IDP
                 </p>
-                <p className="text-muted-foreground text-[11px]">
-                  3-Tier hybrid routing cutting cloud OCR costs by 80–90%.
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
+                  3-Tier routing cutting cloud OCR costs by 80–90%.
                 </p>
               </div>
-              <div className="rounded-lg border border-border bg-background p-4 space-y-1">
+              <div className="rounded-xl border border-border bg-background p-4 space-y-1.5 hover:border-foreground/30 transition-colors">
                 <p className="text-accent font-semibold flex items-center gap-1.5">
                   <Layers className="h-3.5 w-3.5" /> INFERENCE Lab
                 </p>
-                <p className="text-muted-foreground text-[11px]">
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
                   `llm-eval-kit` pip library for offline deterministic LLM evaluations.
                 </p>
               </div>
-              <div className="rounded-lg border border-border bg-background p-4 space-y-1">
+              <div className="rounded-xl border border-border bg-background p-4 space-y-1.5 hover:border-foreground/30 transition-colors">
                 <p className="text-accent font-semibold flex items-center gap-1.5">
-                  <FolderGit2 className="h-3.5 w-3.5" /> CTX-Bridge
+                  <Terminal className="h-3.5 w-3.5" /> CTX-Bridge
                 </p>
-                <p className="text-muted-foreground text-[11px]">
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
                   Open-source context handoff CLI tool published on PyPI.
                 </p>
               </div>
-              <div className="rounded-lg border border-border bg-background p-4 space-y-1">
+              <div className="rounded-xl border border-border bg-background p-4 space-y-1.5 hover:border-foreground/30 transition-colors">
                 <p className="text-accent font-semibold flex items-center gap-1.5">
                   <Award className="h-3.5 w-3.5" /> Verified Certs
                 </p>
-                <p className="text-muted-foreground text-[11px]">
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
                   32 original scanned credentials (12 Anthropic + Google + Linux).
                 </p>
               </div>
@@ -217,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog Preview */}
+      {/* Blog Section */}
       <BlogPreview />
     </div>
   );

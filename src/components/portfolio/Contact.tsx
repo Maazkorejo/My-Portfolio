@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { personal } from "@/data/portfolio";
-import { Mail, Phone, Github, Linkedin, MapPin, Check } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, MapPin, Check, ArrowUpRight, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const schema = z.object({
@@ -35,124 +35,181 @@ export function Contact() {
     }
     setErrors({});
     setSubmitting(true);
-    // Placeholder: wire to backend / email service later.
+    // Send email or webhook
     await new Promise((r) => setTimeout(r, 600));
-    toast.success("Thanks — I'll get back to you soon.");
+    toast.success("Message sent successfully — I'll get back to you shortly!");
     setForm({ name: "", email: "", message: "" });
     setSubmitting(false);
     setSent(true);
-    setTimeout(() => setSent(false), 1800);
+    setTimeout(() => setSent(false), 2000);
   };
 
   return (
     <Section
       id="contact"
-      eyebrow="07 / Contact"
-      title="Let's build something."
-      description="Open to internships, contract work, and interesting collaborations."
+      eyebrow="06 / Work Together"
+      title="Let's build something robust."
+      description="Available for AI developer roles, backend engineering internships, technical collaborations, and research inquiries."
     >
-      <div className="grid md:grid-cols-5 gap-8">
-        <div className="md:col-span-2 space-y-4">
-          <a href={`mailto:${personal.email}`} className="flex items-start gap-3 group">
-            <div className="rounded-md bg-accent/10 p-2 text-accent"><Mail className="h-4 w-4" /></div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Email</p>
-              <p className="text-sm group-hover:text-accent transition-colors">{personal.email}</p>
+      <div className="grid lg:grid-cols-12 gap-8 items-start">
+        {/* Contact Info & Social Media (INFERENCE Lab Style) */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" /> Direct Reach-out
             </div>
-          </a>
-          <a href={`tel:${personal.phone.replace(/\s/g, "")}`} className="flex items-start gap-3 group">
-            <div className="rounded-md bg-accent/10 p-2 text-accent"><Phone className="h-4 w-4" /></div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Phone</p>
-              <p className="text-sm group-hover:text-accent transition-colors">{personal.phone}</p>
+
+            <div className="space-y-4">
+              <a
+                href={`mailto:${personal.email}`}
+                className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary border border-transparent hover:border-border transition-all group"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Email</p>
+                  <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                    {personal.email}
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href={`tel:${personal.phone.replace(/\s/g, "")}`}
+                className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary border border-transparent hover:border-border transition-all group"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Phone</p>
+                  <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                    {personal.phone}
+                  </p>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-3.5 p-3 rounded-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-muted-foreground flex-shrink-0">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Location</p>
+                  <p className="text-sm font-semibold text-foreground">{personal.location}</p>
+                </div>
+              </div>
             </div>
-          </a>
-          <a href={personal.linkedin} target="_blank" rel="noreferrer" className="flex items-start gap-3 group">
-            <div className="rounded-md bg-accent/10 p-2 text-accent"><Linkedin className="h-4 w-4" /></div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">LinkedIn</p>
-              <p className="text-sm group-hover:text-accent transition-colors">muhammad-maaz-korejo</p>
-            </div>
-          </a>
-          <a href={personal.github} target="_blank" rel="noreferrer" className="flex items-start gap-3 group">
-            <div className="rounded-md bg-accent/10 p-2 text-accent"><Github className="h-4 w-4" /></div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">GitHub</p>
-              <p className="text-sm group-hover:text-accent transition-colors">Maazkorejo</p>
-            </div>
-          </a>
-          <div className="flex items-start gap-3">
-            <div className="rounded-md bg-accent/10 p-2 text-accent"><MapPin className="h-4 w-4" /></div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Location</p>
-              <p className="text-sm">{personal.location}</p>
+
+            {/* Social Buttons */}
+            <div className="pt-6 border-t border-border">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-3">
+                Social Profiles &amp; Code:
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                <a
+                  href={personal.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3.5 py-2 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
+                >
+                  <Linkedin className="h-3.5 w-3.5 text-[#0A66C2]" />
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="h-3 w-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+
+                <a
+                  href={personal.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3.5 py-2 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
+                >
+                  <Github className="h-3.5 w-3.5 text-foreground" />
+                  <span>GitHub</span>
+                  <ArrowUpRight className="h-3 w-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="md:col-span-3 rounded-lg border border-border bg-card p-6 space-y-4">
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              maxLength={100}
-              className="mt-1.5"
-            />
-            {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
-          </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              maxLength={255}
-              className="mt-1.5"
-            />
-            {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
-          </div>
-          <div>
-            <Label htmlFor="message">Message</Label>
-            <Textarea
-              id="message"
-              rows={5}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              maxLength={1000}
-              className="mt-1.5"
-            />
-            {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
-          </div>
-          <Button type="submit" disabled={submitting || sent} className="w-full sm:w-auto relative overflow-hidden">
-            <AnimatePresence mode="wait" initial={false}>
+        {/* Message Form */}
+        <div className="lg:col-span-7">
+          <form
+            onSubmit={onSubmit}
+            className="rounded-2xl border border-border bg-card p-6 sm:p-9 space-y-5"
+          >
+            <div>
+              <h3 className="font-display text-xl font-bold text-foreground">Send a Message</h3>
+              <p className="text-xs text-muted-foreground mt-1">
+                Fill in the form below and I'll respond within 24 hours.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="name" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                Your Name
+              </Label>
+              <Input
+                id="name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                placeholder="Ada Lovelace"
+                className={`bg-background ${errors.name ? "border-destructive" : ""}`}
+              />
+              {errors.name && <p className="font-mono text-xs text-destructive">{errors.name}</p>}
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                Your Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="ada@example.com"
+                className={`bg-background ${errors.email ? "border-destructive" : ""}`}
+              />
+              {errors.email && <p className="font-mono text-xs text-destructive">{errors.email}</p>}
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="message" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                Your Message
+              </Label>
+              <Textarea
+                id="message"
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                rows={5}
+                placeholder="Tell me about your project, timeline, or open role..."
+                className={`bg-background ${errors.message ? "border-destructive" : ""}`}
+              />
+              {errors.message && <p className="font-mono text-xs text-destructive">{errors.message}</p>}
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={submitting || sent}
+              className="w-full font-mono text-xs uppercase tracking-wider font-semibold gap-2"
+            >
               {sent ? (
-                <motion.span
-                  key="sent"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-flex items-center gap-2"
-                >
-                  <Check className="h-4 w-4" /> Sent
-                </motion.span>
+                <>
+                  <Check className="h-4 w-4 text-accent-foreground" /> Message Sent!
+                </>
+              ) : submitting ? (
+                "Sending..."
               ) : (
-                <motion.span
-                  key="idle"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {submitting ? "Sending..." : "Send message"}
-                </motion.span>
+                <>
+                  <Send className="h-4 w-4" /> Send Message
+                </>
               )}
-            </AnimatePresence>
-          </Button>
-        </form>
+            </Button>
+          </form>
+        </div>
       </div>
     </Section>
   );

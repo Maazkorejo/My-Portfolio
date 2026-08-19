@@ -2,61 +2,79 @@ import { Section } from "./Section";
 import { experience } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUpItem, viewportOnce } from "@/lib/motion";
+import { Briefcase, Building2, Calendar } from "lucide-react";
 
 export function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="04 / Experience"
-      title="Where I've been."
+      eyebrow="04 / Career & Fellowships"
+      title="Where I've been & what I've built."
+      description="Track record across Intelligent Document Processing (IDP) SaaS, open-source LLM evaluation engineering, and cloud backend platforms."
     >
-      <div className="relative">
-        <div className="absolute left-3 top-2 bottom-2 w-px bg-border md:left-1/2" />
-        <motion.div
-          variants={staggerContainer(0.15)}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          className="space-y-10"
-        >
-          {experience.map((e, i) => (
-            <motion.div
-              key={e.role}
-              variants={fadeUpItem}
-              className="relative pl-10 md:pl-0 md:grid md:grid-cols-2 md:gap-12"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.35, delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
-                className="absolute left-0 top-1.5 h-6 w-6 rounded-full border-2 border-accent bg-background md:left-1/2 md:-translate-x-1/2 flex items-center justify-center"
-              >
-                <span className="relative flex h-2 w-2">
-                  {i === 0 && (
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                  )}
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-                </span>
-              </motion.div>
-
-              <div className={i % 2 === 0 ? "md:text-right md:pr-8" : "md:col-start-2 md:pl-8"}>
-                <p className="font-mono text-xs text-accent mb-1">{e.period}</p>
-                <h3 className="font-semibold text-lg">{e.role}</h3>
-                <p className="text-sm text-muted-foreground">{e.org}</p>
+      <motion.div
+        variants={staggerContainer(0.1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="space-y-8"
+      >
+        {experience.map((e, i) => (
+          <motion.div
+            key={e.role}
+            variants={fadeUpItem}
+            className="group rounded-2xl border border-border bg-card p-6 sm:p-9 hover:border-foreground/30 hover:shadow-lg transition-all"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent flex-shrink-0 group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                  <Briefcase className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground">
+                      {e.role}
+                    </h3>
+                    {i === 0 && (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-accent/10 text-accent border border-accent/20">
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" /> Current Role
+                      </span>
+                    )}
+                    {i === 1 && (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-secondary text-muted-foreground border border-border">
+                        Cohort 01
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm font-medium text-muted-foreground mt-0.5 flex items-center gap-1.5">
+                    <Building2 className="h-3.5 w-3.5 text-accent" />
+                    <span>{e.org}</span>
+                  </p>
+                </div>
               </div>
 
-              <div className={i % 2 === 0 ? "md:col-start-2 md:pl-8" : "md:col-start-1 md:row-start-1 md:text-right md:pr-8"}>
-                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
-                  {e.points.map((p, idx) => (
-                    <li key={idx}>{p}</li>
-                  ))}
-                </ul>
+              <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground bg-background px-3 py-1.5 rounded-lg border border-border/80 self-start sm:self-auto">
+                <Calendar className="h-3.5 w-3.5 text-accent" />
+                <span>{e.period}</span>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+            </div>
+
+            <div className="border-t border-border pt-6">
+              <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
+                Key Technical Contributions:
+              </p>
+              <ul className="space-y-2.5">
+                {e.points.map((p, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </Section>
   );
 }
