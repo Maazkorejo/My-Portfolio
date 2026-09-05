@@ -1,99 +1,112 @@
-import { useState } from "react";
-import { z } from "zod";
-import { toast } from "sonner";
 import { Section } from "./Section";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { personal } from "@/data/portfolio";
 import { LinkedInBadge } from "./LinkedInBadge";
-import { Mail, Phone, Github, Linkedin, MapPin, Check, ArrowUpRight, Send } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const schema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Invalid email").max(255),
-  message: z.string().trim().min(1, "Message is required").max(1000),
-});
+import { Mail, Phone, Github, Linkedin, MapPin, ArrowUpRight, Copy, Check } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const parsed = schema.safeParse(form);
-    if (!parsed.success) {
-      const fieldErrors: Record<string, string> = {};
-      parsed.error.errors.forEach((err) => {
-        if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-    setErrors({});
-    setSubmitting(true);
-    // Send email or webhook
-    await new Promise((r) => setTimeout(r, 600));
-    toast.success("Message sent successfully — I'll get back to you shortly!");
-    setForm({ name: "", email: "", message: "" });
-    setSubmitting(false);
-    setSent(true);
-    setTimeout(() => setSent(false), 2000);
+  const copyEmail = () => {
+    navigator.clipboard.writeText(personal.email);
+    setCopied(true);
+    toast.success("Email copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <Section
       id="contact"
-      eyebrow="06 / Work Together"
+      eyebrow="06 / Connect & Collaborate"
       title="Let's build something robust."
-      description="Available for AI developer roles, backend engineering internships, technical collaborations, and research inquiries."
+      description="Open for AI developer positions, backend engineering internships, technical collaborations, and research inquiries."
     >
       <div className="grid lg:grid-cols-12 gap-8 items-start">
-        {/* Contact Info & Social Media (INFERENCE Lab Style) */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-accent">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" /> Direct Reach-out
+        {/* Direct Reach-out & Socials */}
+        <div className="lg:col-span-7 space-y-6">
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-9 space-y-6">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1 font-mono text-xs uppercase tracking-wider text-accent font-semibold">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" /> Direct Contact Channels
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">Fast Response Guaranteed</span>
             </div>
 
-            <div className="space-y-4">
-              <a
-                href={`mailto:${personal.email}`}
-                className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary border border-transparent hover:border-border transition-all group"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Email</p>
-                  <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {personal.email}
-                  </p>
-                </div>
-              </a>
+            <div className="space-y-4 pt-2">
+              {/* Email Card */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl border border-border bg-background hover:border-foreground/30 transition-all">
+                <a
+                  href={`mailto:${personal.email}`}
+                  className="flex items-center gap-3.5 group min-w-0"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Email Address</p>
+                    <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors truncate">
+                      {personal.email}
+                    </p>
+                  </div>
+                </a>
 
-              <a
-                href={`tel:${personal.phone.replace(/\s/g, "")}`}
-                className="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary border border-transparent hover:border-border transition-all group"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
-                  <Phone className="h-4 w-4" />
+                <div className="flex items-center gap-2 self-end sm:self-auto">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={copyEmail}
+                    className="font-mono text-xs gap-1.5 h-8 px-3"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 text-accent" /> : <Copy className="h-3.5 w-3.5" />}
+                    <span>{copied ? "Copied" : "Copy"}</span>
+                  </Button>
+                  <Button
+                    asChild
+                    size="sm"
+                    className="font-mono text-xs gap-1.5 h-8 px-3"
+                  >
+                    <a href={`mailto:${personal.email}`}>
+                      Send Email <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  </Button>
                 </div>
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Phone</p>
-                  <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {personal.phone}
-                  </p>
-                </div>
-              </a>
+              </div>
 
-              <div className="flex items-start gap-3.5 p-3 rounded-xl">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-muted-foreground flex-shrink-0">
-                  <MapPin className="h-4 w-4" />
+              {/* Phone Card */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl border border-border bg-background hover:border-foreground/30 transition-all">
+                <a
+                  href={`tel:${personal.phone.replace(/\s/g, "")}`}
+                  className="flex items-center gap-3.5 group"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors flex-shrink-0">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Phone / WhatsApp</p>
+                    <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                      {personal.phone}
+                    </p>
+                  </div>
+                </a>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="font-mono text-xs gap-1.5 h-8 px-3 self-end sm:self-auto"
+                >
+                  <a href={`tel:${personal.phone.replace(/\s/g, "")}`}>
+                    Call / Dial <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </Button>
+              </div>
+
+              {/* Location Card */}
+              <div className="flex items-center gap-3.5 p-4 rounded-xl border border-border bg-background">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-muted-foreground flex-shrink-0">
+                  <MapPin className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Location</p>
@@ -102,117 +115,41 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social Buttons */}
+            {/* Social Profiles */}
             <div className="pt-6 border-t border-border">
               <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-3">
-                Social Profiles &amp; Code:
+                Connect on GitHub &amp; LinkedIn:
               </p>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href={personal.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3.5 py-2 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
+                  className="group inline-flex items-center gap-2.5 rounded-xl border border-border bg-background px-4 py-2.5 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
                 >
-                  <Linkedin className="h-3.5 w-3.5 text-[#0A66C2]" />
-                  <span>LinkedIn</span>
-                  <ArrowUpRight className="h-3 w-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+                  <span>LinkedIn Profile</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
 
                 <a
                   href={personal.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3.5 py-2 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
+                  className="group inline-flex items-center gap-2.5 rounded-xl border border-border bg-background px-4 py-2.5 font-mono text-xs font-semibold text-foreground hover:border-foreground/40 hover:bg-secondary transition-all"
                 >
-                  <Github className="h-3.5 w-3.5 text-foreground" />
-                  <span>GitHub</span>
-                  <ArrowUpRight className="h-3 w-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <Github className="h-4 w-4 text-foreground" />
+                  <span>GitHub (@Maazkorejo)</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               </div>
             </div>
           </div>
-
-          {/* Official Embedded LinkedIn Profile Badge */}
-          <LinkedInBadge />
         </div>
 
-        {/* Message Form */}
-        <div className="lg:col-span-7">
-          <form
-            onSubmit={onSubmit}
-            className="rounded-2xl border border-border bg-card p-6 sm:p-9 space-y-5"
-          >
-            <div>
-              <h3 className="font-display text-xl font-bold text-foreground">Send a Message</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Fill in the form below and I'll respond within 24 hours.
-              </p>
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="name" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Your Name
-              </Label>
-              <Input
-                id="name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Ada Lovelace"
-                className={`bg-background ${errors.name ? "border-destructive" : ""}`}
-              />
-              {errors.name && <p className="font-mono text-xs text-destructive">{errors.name}</p>}
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="email" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Your Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="ada@example.com"
-                className={`bg-background ${errors.email ? "border-destructive" : ""}`}
-              />
-              {errors.email && <p className="font-mono text-xs text-destructive">{errors.email}</p>}
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="message" className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Your Message
-              </Label>
-              <Textarea
-                id="message"
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                rows={5}
-                placeholder="Tell me about your project, timeline, or open role..."
-                className={`bg-background ${errors.message ? "border-destructive" : ""}`}
-              />
-              {errors.message && <p className="font-mono text-xs text-destructive">{errors.message}</p>}
-            </div>
-
-            <Button
-              type="submit"
-              size="lg"
-              disabled={submitting || sent}
-              className="w-full font-mono text-xs uppercase tracking-wider font-semibold gap-2"
-            >
-              {sent ? (
-                <>
-                  <Check className="h-4 w-4 text-accent-foreground" /> Message Sent!
-                </>
-              ) : submitting ? (
-                "Sending..."
-              ) : (
-                <>
-                  <Send className="h-4 w-4" /> Send Message
-                </>
-              )}
-            </Button>
-          </form>
+        {/* LinkedIn Profile Card Column */}
+        <div className="lg:col-span-5 space-y-6">
+          <LinkedInBadge />
         </div>
       </div>
     </Section>
