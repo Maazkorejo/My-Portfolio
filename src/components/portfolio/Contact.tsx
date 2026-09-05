@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { personal } from "@/data/portfolio";
+import { LinkedInBadge } from "./LinkedInBadge";
 import { Mail, Phone, Github, Linkedin, MapPin, Check, ArrowUpRight, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -131,6 +132,9 @@ export function Contact() {
               </div>
             </div>
           </div>
+
+          {/* Official Embedded LinkedIn Profile Badge */}
+          <LinkedInBadge />
         </div>
 
         {/* Message Form */}
