@@ -3,7 +3,7 @@
 > **AI Developer & Backend Engineer**  
 > LLM-Integrated Platforms · Intelligent Document Processing (IDP) · Offline LLM Evaluation · Agentic Workflows
 
-🌐 **Live Website:** [https://my-portfolio-iota-six-98.vercel.app](https://my-portfolio-iota-six-98.vercel.app)
+🌐 **Live Website:** [https://maaz-korejo.vercel.app](https://maaz-korejo.vercel.app)
 
 ---
 
